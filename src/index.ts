@@ -1,7 +1,8 @@
 import { User } from '../models/User';
 
-const user = new User({ name: 'y', age: 3 });
+const user = new User({id: 1 });
 
-user.on('click', ()=>{
-  console.log("hi")
-})
+user.fetch();
+
+// user.set({name: 'new', age:10})
+// user.save()
