@@ -2,7 +2,9 @@ import { User } from '../models/User';
 
 const user = new User({id: 1 });
 
-user.fetch();
+user.events.on('test',()=>{
+  console.log('click')
+})
 
-// user.set({name: 'new', age:10})
-// user.save()
+
+user.events.trigger('test')
