@@ -27,9 +27,7 @@ export class Model<T extends containsId> {
     private sync: Sync<T>
   ) {}
 
-  get get() {
-    return this.props.get;
-  }
+  get = this.props.get;
 
   //this will also trigger a event lister of 'change' to notify
   // all subscribers to this instance know there is a change
@@ -38,13 +36,8 @@ export class Model<T extends containsId> {
     this.events.trigger("change");
   }
 
-  get on() {
-    return this.events.on;
-  }
-
-  get trigger() {
-    return this.events.trigger;
-  }
+  on = this.events.on;
+  trigger = this.events.trigger;
 
   fetch(): void {
     const id = this.get("id");

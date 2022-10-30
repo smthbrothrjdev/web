@@ -1,6 +1,13 @@
-import { userInfo } from "os";
-import { User } from "../models/User";
+import { Collection } from "../models/Collection";
+import { User, UserProps } from "../models/User";
 
-const user = User.buildUser({});
+const a = new Collection<User, UserProps>(
+  "http://localhost:3000/users",
+  (json: UserProps) => User.buildUser(json)
+);
 
-user.get("id");
+a.on("change", () => {
+  console.log("loaded data");
+});
+
+a.fetch();
