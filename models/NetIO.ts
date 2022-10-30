@@ -1,20 +1,22 @@
- import axios, {AxiosResponse} from 'axios'
- 
- export class NetworkIO  {
-  fetch(): void {
-    axios
-      .get(`http://localhost:3000/users/${this.get('id')}`)
-      .then((res: AxiosResponse): void => {
-        this.set(res.data);
-      });
+import axios, { AxiosPromise, AxiosResponse } from "axios";
+//import { UserProps } from "./User";
+
+interface ContainsId {
+  id?: number;
+}
+export class NetIO<T extends ContainsId> {
+  constructor(public rootURL: string) {}
+
+  fetch(id: number): AxiosPromise {
+    return axios.get(`${this.rootURL}/${id}`);
   }
 
-  save(): void {
-    const targetId = this.get('id');
-    if (targetId) {
-      axios.patch(`http://localhost:3000/users/${targetId}`, this.data);
+  save(data: T): AxiosPromise {
+    const { id } = data;
+    if (id) {
+      return axios.patch(`${this.rootURL}/${id}`, data);
     } else {
-      axios.post('http://localhost:3000/users', this.data);
+      return axios.post(this.rootURL, data);
     }
   }
- }  
+}

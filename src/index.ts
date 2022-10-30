@@ -1,10 +1,1 @@
-import { User } from '../models/User';
-
-const user = new User({id: 1 });
-
-user.events.on('test',()=>{
-  console.log('click')
-})
-
-
-user.events.trigger('test')
+import { User } from "../models/User";
