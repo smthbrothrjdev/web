@@ -1,15 +1,9 @@
 import { UserForm } from '../views/UserForm';
+import { User } from '../models/User';
 
-const u = new UserForm(document.getElementById('root')!);
+const u = new UserForm(
+  document.getElementById('root')!,
+  User.buildUser({ name: 'BJ', age: 36 })
+);
 
 u.render();
-
-u.render2(component());
-
-function component() {
-  return `
-    <div>
-    <h1> hello this is render 2! </h2>
-    </div>
-    `;
-}

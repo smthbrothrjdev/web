@@ -1,10 +1,10 @@
+import { User } from '../models/User';
 export class UserForm {
-  constructor(public parent: Element) {}
+  constructor(public parent: Element, public model: User) {}
 
   eventsMap(): { [key: string]: () => void } {
     return {
-      'click:button': this.onButtonClick,
-      'mouseenter:h1': this.onH1Hover,
+      'click:.randomAge': this.onSetAgeClick,
     };
   }
 
@@ -18,20 +18,19 @@ export class UserForm {
     }
   }
 
-  onH1Hover() {
-    console.log('hoevereed!!!');
-  }
-
-  onButtonClick(): void {
-    console.log('clickesd!!');
-  }
+  onSetAgeClick = (): void => {
+    this.model.setRandomAge();
+    this.render();
+  };
 
   template(): string {
     return `
     <div>
-    <h1> Hi </h1>
+    <h1> ${this.model.get('name')}  </h1>
+    <h1> ${this.model.get('age')} </h1>
     <input />
     <button id='button'>hello</button>
+    <button class='randomAge'> set random age </button>
     </div>`;
   }
 
@@ -39,13 +38,6 @@ export class UserForm {
     const template = document.createElement('template');
     template.innerHTML = this.template();
     this.eventBinder(template.content);
-    this.parent.append(template.content);
-  }
-
-  render2(s: string): void {
-    const template = document.createElement('template');
-    template.innerHTML = s;
-
     this.parent.append(template.content);
   }
 }
