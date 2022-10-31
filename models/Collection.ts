@@ -1,6 +1,6 @@
-import { EventEnv } from "./EventEnv";
+import { EventEnv } from './EventEnv';
 //import { User, UserProps } from "./User";
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from 'axios';
 
 //T = model k= model props
 export class Collection<T, K> {
@@ -21,7 +21,7 @@ export class Collection<T, K> {
       res.data.forEach((element: K) => {
         this.models.push(this.deserial(element));
       });
-      this.trigger("change");
+      this.trigger('change');
     });
   }
 }
