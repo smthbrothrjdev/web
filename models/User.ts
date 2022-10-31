@@ -10,6 +10,8 @@ export interface UserProps {
   age?: number;
 }
 
+export type TUser = Collection<User, UserProps>;
+
 const rootUrl = 'http://localhost:3000/users';
 
 export class User extends Model<UserProps> {
@@ -20,7 +22,6 @@ export class User extends Model<UserProps> {
       new NetIO<UserProps>(rootUrl)
     );
   }
-
   static buildCollection(): Collection<User, UserProps> {
     return new Collection<User, UserProps>(rootUrl, (json: UserProps) =>
       User.buildUser(json)

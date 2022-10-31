@@ -1,9 +1,15 @@
-import { User } from '../models/User';
+import { UserForm } from '../views/UserForm';
 
-const a = User.buildCollection();
+const u = new UserForm(document.getElementById('root')!);
 
-a.on('change', () => {
-  console.log('loaded data');
-});
+u.render();
 
-a.fetch();
+u.render2(component());
+
+function component() {
+  return `
+    <div>
+    <h1> hello this is render 2! </h2>
+    </div>
+    `;
+}
