@@ -1,4 +1,4 @@
-import { AxiosPromise, AxiosResponse } from "axios";
+import { AxiosPromise, AxiosResponse } from 'axios';
 
 interface Events {
   on(eventName: string, callback: () => void): void;
@@ -33,21 +33,21 @@ export class Model<T extends containsId> {
   // all subscribers to this instance know there is a change
   set(update: T) {
     this.props.set(update);
-    this.events.trigger("change");
+    this.events.trigger('change');
   }
 
   on = this.events.on;
   trigger = this.events.trigger;
 
   fetch(): void {
-    const id = this.get("id");
+    const id = this.get('id');
 
-    if (typeof id === "number") {
+    if (typeof id === 'number') {
       this.sync.fetch(id).then((res: AxiosResponse): void => {
         this.set(res.data);
       });
     } else {
-      throw new Error("Fetch aborted, item is not in database!");
+      throw new Error('Fetch aborted, item is not in database!');
     }
   }
 
@@ -55,10 +55,11 @@ export class Model<T extends containsId> {
     this.sync
       .save(this.props.getAll())
       .then((res: AxiosResponse) => {
-        this.trigger("save");
+        this.trigger('save');
+        this.trigger('change');
       })
       .catch(() => {
-        this.trigger("error");
+        this.trigger('error');
       });
   }
 }

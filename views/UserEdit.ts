@@ -22,9 +22,9 @@ export class UserEdit extends View<User, UserProps> {
     let users = User.buildCollection();
     //add change method needed for collectionview as well as the fetch below
     users.on('change', () => {
-      const root = this.regions.userList;
-      if (root) {
-        new UserList(root, users).render();
+      const parentElement = this.regions.userList;
+      if (parentElement) {
+        new UserList(parentElement, users).render();
       }
     });
     users.fetch();
