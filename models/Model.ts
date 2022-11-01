@@ -16,7 +16,7 @@ interface ModelProps<T> {
   getAll(): T;
 }
 
-interface containsId {
+export interface containsId {
   id?: number;
 }
 
