@@ -12,7 +12,7 @@ export interface UserProps {
 
 export type TUser = Collection<User, UserProps>;
 
-const rootUrl = 'http://localhost:3000/users';
+const rootUrl = 'http://localhost:8080/users';
 
 export class User extends Model<UserProps> {
   static buildUser(attrs: UserProps): User {
