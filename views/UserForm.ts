@@ -28,10 +28,10 @@ export class UserForm extends View<User, UserProps> {
   template(): string {
     return `
     <div>
-    <input type='text' placeholder="${this.model.get("name")}"/>
-    <button class='setName'>update name</button>
-    <button class='randomAge'> set random age </button>
-    <button class='saveButton'> save </button>
+    <input class='p-2' type='text' placeholder="${this.model.get("name")}"/>
+    <button class='setName btn btn-primary'>update name</button>
+    <button class='randomAge btn btn-primary'> set random age </button>
+    <button class='saveButton btn btn-primary'> save </button>
     </div>`;
   }
 }
